@@ -1,5 +1,5 @@
 # Hi, I'm Ravi! 👋
-this help's you all to create a telegram bot to get Youtube Video Download link, Tags, Subtitles, YouTube shorts
+I made this bot download YouTube Videos as Both Mp4 and Mp3 Format.
 
 ## 🛠 Packages
 ```bash
@@ -7,12 +7,13 @@ this help's you all to create a telegram bot to get Youtube Video Download link,
   Pyrogram 
   Pytube
 ```
-## 🚀 About Me
-I'm a Ravi Raushan and i hope this bot Should Help you a lot.
 
-## 🔗 Social Profiles
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/) [![linkedin](https://img.shields.io/badge/instagram-0A66C2?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/hidden.coding) [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/raviseraushan)
-
+## 🛠 ENV Needed To Run This Bot
+```bash
+  BOT_TOKEN : Create Bot Using @BotFather and Get From There
+  APP_ID, APP_HASH : These Two Get From here https://my.telegram.org/auth
+  ADMIN_CHANNAL_USERNAME : And your bot as admin to any channel or enter the channel username
+```
 
 ![Logo](https://res.cloudinary.com/doanyb8ku/image/upload/v1692420977/RaviRCoder__1_-removebg-preview_r4ywud.png)
 

@@ -1,4 +1,5 @@
 import json
+import re
 import yt_dlp as YouTube
 ydl_opts = {
     "quiet": True,
@@ -8,10 +9,9 @@ class Youtube_Extract:
     def __init__(self, link):
         ydl = YouTube.YoutubeDL(ydl_opts)
         self.info_dict = ydl.extract_info(link, download=False)
+        self.video_title = self.info_dict.get("title", "")
 
     def get_info(self):
-
-        video_title = self.info_dict.get("title", "")
         video_id = self.info_dict.get("id", "")
         video_author = self.info_dict.get('channel', "")
         video_views = int(self.info_dict.get("view_count", ""))
@@ -21,7 +21,7 @@ class Youtube_Extract:
 
         return {
             "Id": video_id,
-            "Title": video_title,
+            "Title": self.video_title,
             "Channel": video_author,
             "Length": self.convert_seconds(video_length),
             "Views": self.convert_views(video_views),
@@ -34,7 +34,7 @@ class Youtube_Extract:
             if "audio_channels" in i and i["audio_channels"] == 2 and i["resolution"] == "audio only":
                 ext=i['ext']
                 Format=i['format'].replace(' audio only ', ' ')
-                url=i['url']
+                url=i['url']+f"&dl=1&title={self.title_to_slug(self.video_title)}"
                 data[Format]=url
 
         return data
@@ -46,7 +46,7 @@ class Youtube_Extract:
                 q = ["360p", "720p"]
                 if i["format_note"] in q:
                     Format=i['format_note']
-                    url=i.get('url', 'N/A')
+                    url=i.get('url', 'N/A')+f"&dl=1&title={self.title_to_slug(self.video_title)}"
                     data[Format]=url
                     # ext=i.get('video_ext', 'N/A')
         return data
@@ -73,3 +73,6 @@ class Youtube_Extract:
             return f"{views / 1_000_000:.1f}M"
         else:
             return f"{views / 1_000_000_000:.1f}B"
+    def title_to_slug(self,title):
+        slug= re.sub(r'[^a-zA-Z0-9]+', '-', re.sub(r'[^\w\s-]', '', title).strip().lower())
+        return slug
